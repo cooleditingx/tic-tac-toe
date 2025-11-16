@@ -1,5 +1,6 @@
 (function Game(){
     let row;
+    let gameOver = false
     let column;
     function GameBoard(){
         let gameBoard = []
@@ -16,13 +17,14 @@
         this.token = token;
         this.score = score;
     }
-    let player1 = new Players("player1","O",0)
-    let player2 = new Players("player2","X",0)
+    let player2 = new Players("Player 2","O",0)
+    let player1 = new Players("Player 1","X",0)
     function changeTurn(){
         if (activePlayer == player2){
             activePlayer = player1
         } else {
             activePlayer = player2
+
         }
         return activePlayer
     }
@@ -51,13 +53,15 @@
             return gameBoard
         } else {
             console.log("This cell is taken please enter a new cell")
-            return validateInput(gameBoard,currentPlayer,row,column)
+            return 
         }
     }
     function checkWinner(x){
         if ((x[0][0] == player2.token && x[0][1] == player2.token && x[0][2] == player2.token) || (x[1][0] == player2.token && x[1][1] == player2.token && x[1][2] == player2.token) || (x[2][0] == player2.token && x[2][1] == player2.token && x[2][2] == player2.token) || (x[0][0] == player2.token && x[1][0] == player2.token && x[2][0] == player2.token) || (x[0][1] == player2.token && x[1][1] == player2.token && x[2][1] == player2.token) || (x[0][2] == player2.token && x[1][2] == player2.token && x[2][2] == player2.token) || (x[0][0] == player2.token && x[1][1] == player2.token && x[2][2] == player2.token) || (x[2][0] == player2.token && x[1][1] == player2.token && x[0][2] == player2.token)){
+            gameOver = true
             return true
         } else if ((x[0][0] == player1.token && x[0][1] == player1.token && x[0][2] == player1.token) || (x[1][0] == player1.token && x[1][1] == player1.token && x[1][2] == player1.token) || (x[2][0] == player1.token && x[2][1] == player1.token && x[2][2] == player1.token) || (x[0][0] == player1.token && x[1][0] == player1.token && x[2][0] == player1.token) || (x[0][1] == player1.token && x[1][1] == player1.token && x[2][1] == player1.token) || (x[0][2] == player1.token && x[1][2] == player1.token && x[2][2] == player1.token) || (x[0][0] == player1.token && x[1][1] == player1.token && x[2][2] == player1.token) || (x[2][0] == player1.token && x[1][1] == player1.token && x[0][2] == player1.token)){
+            gameOver = true
             return true
         } else{
             return false
@@ -65,6 +69,7 @@
     }
     function checkDraw(moves){
         if (checkWinner(gameBoard) == false && moves == 8){
+            gameOver = true
             return true
         }
     }
@@ -79,17 +84,36 @@
             cell.appendChild(img)
         }
     }
-    activePlayer = player2
+    activePlayer = player1
+    let x = gameBoard
+    let moveCount = 0
+    const status = document.getElementById("status")
+    status.innerText = activePlayer.name + " Turn"
     const squares = document.querySelectorAll(".square")
     for (i=0;i<squares.length;i++){
         squares[i].addEventListener("click",function (event){
+            if (gameOver) return
             let cell= event.currentTarget
             let id = event.currentTarget.id
             row = id.slice(0,1)
             column = id.slice(1,2)
-            validateInput(gameBoard,activePlayer,row,column)
+            if (gameBoard[row][column] !== ""){
+                console.log("This cell is taken, please choose another cell")
+                return  // Exit early, don't call validateInput or addMark
+            }
+            validateInput(gameBoard,activePlayer,row,column,cell)
             addMark(cell)
-            changeTurn()
+            moveCount++
+            if (checkWinner(x)== true){
+                status.innerText = activePlayer.name+" is the Winner"
+                gameOver = true
+            }else if (moveCount >= 9){  // Add this check for draw
+                    status.innerText = "It's a Draw"
+                    gameOver = true} 
+            else if (checkWinner(x)==false){
+                changeTurn()
+                status.innerText = activePlayer.name + " Turn"
+            }
         })
     }
 
