@@ -36,26 +36,22 @@
         }
         return activePlayer
     }
-    //let currentPlayer = activePlayer()
+    let currentPlayer = activePlayer()
     let gameBoard = []
     gameBoard = GameBoard()
-    function validateInput(gameBoard,currentPlayer){
-        row = prompt("Enter row number");
+    function validateInput(gameBoard,currentPlayer,row,column){
         if (row<0 || row>2) {
             console.log("Please enter a valid row and column number (from 0,2,1")
-            row = (prompt("Enter row number")); 
         } 
-        column = prompt("Enter a column number")
         if (column<0 || column>2) {
             console.log("Please enter a valid row and column number (from 0,2,1")
-            column = (prompt("Enter column number"));
         }
         if (gameBoard[row][column] == ""){
             gameBoard[row][column] = currentPlayer.token;
             return gameBoard
         } else {
             console.log("This cell is taken please enter a new cell")
-            return validateInput(gameBoard)
+            return validateInput(gameBoard,currentPlayer,row,column)
         }
     }
     function checkWinner(x){
@@ -72,7 +68,40 @@
             return true
         }
     }
-    function playGame(){
+    function addMark(cell){
+        if(activePlayer.token == "X"){
+            const img = document.createElement("img")
+            img.src = "arrow.png"
+            cell.appendChild(img)
+        } else if (activePlayer.token == "O"){
+            const img = document.createElement("img")
+            img.src = "circle.png"
+            cell.appendChild(img)
+        }
+    }
+    activePlayer = player2
+    const squares = document.querySelectorAll(".square")
+    for (i=0;i<squares.length;i++){
+        squares[i].addEventListener("click",function (event){
+            let cell= event.currentTarget
+            let id = event.currentTarget.id
+            row = id.slice(0,1)
+            column = id.slice(1,2)
+            validateInput(gameBoard,activePlayer,row,column)
+            addMark(cell)
+            changeTurn()
+        })
+    }
+
+
+
+
+
+
+
+
+
+    /*function playGame(){
         let gameBoard = GameBoard()//initializing gameboard
         console.log("1 | 2 | 3")//print board
         console.log("4 | 5 | 6")// print board
@@ -110,5 +139,5 @@
             i = i +1
         }
     }
-    playGame()
+    playGame()*/
 })()
