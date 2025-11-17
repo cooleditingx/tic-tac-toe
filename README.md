@@ -59,3 +59,9 @@ Open the index.html file in your web browser.
 4.  Players alternate turns until one player achieves three of their marks in a row, column, or diagonal.
 5.  The game ends when a player wins or when all nine squares are filled, resulting in a draw.
 6.  The game status is always visible above the board, indicating the current player's turn or the final outcome.
+
+<img width="1470" height="798" alt="Screenshot 2025-11-17 at 4 15 28 PM" src="https://github.com/user-attachments/assets/7c1a99c1-60ec-44c4-9d9a-4df7099defef" />
+
+
+
+
