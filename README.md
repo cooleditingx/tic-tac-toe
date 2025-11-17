@@ -62,6 +62,7 @@ Open the index.html file in your web browser.
 
 <img width="1470" height="798" alt="Screenshot 2025-11-17 at 4 15 28 PM" src="https://github.com/user-attachments/assets/7c1a99c1-60ec-44c4-9d9a-4df7099defef" />
 
+<img width="1470" height="798" alt="Screenshot 2025-11-17 at 4 16 11 PM" src="https://github.com/user-attachments/assets/3685922a-d304-4d2a-a9ee-8cc34bbf08b5" />
 
 
 
