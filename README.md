@@ -46,11 +46,10 @@ Technologies used in the project:
     ```
 Open the index.html file in your web browser.
 
-Note on Assets: The game requires three image files to be present in the root directory for full visual fidelity:
-
-background.png: For the page background.
-arrow.png: Represents the 'X' mark.
-circle.png: Represents the 'O' mark.
+***Note on Assets:*** The game requires three image files to be present in the root directory for full visual fidelity:
+- `background.png`: For the page background.
+- `arrow.png`: Represents the 'X' mark.
+- `circle.png`: Represents the 'O' mark.
 
 ## How to Play
 
