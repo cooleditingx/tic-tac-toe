@@ -34,14 +34,16 @@ Technologies used in the project:
 <p>To run this project locally, you just need a web browser </p>
 
 <h2>🛠️ Installation Steps:</h2>
-1. Clone the repository to your local machine:
-```
-git clone https://github.com/cooleditingx/tic-tac-toe.git
-```
-Navigate to the project directory:
-```
-cd tic-tac-toe
-```
+### Installation
+
+1.  Clone the repository to your local machine:
+    ```sh
+    git clone https://github.com/cooleditingx/tic-tac-toe.git
+    ```
+2.  Navigate to the project directory:
+    ```sh
+    cd tic-tac-toe
+    ```
 Open the index.html file in your web browser.
 
 Note on Assets: The game requires three image files to be present in the root directory for full visual fidelity:
